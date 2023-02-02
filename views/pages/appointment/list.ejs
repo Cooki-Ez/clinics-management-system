@@ -1,0 +1,71 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2><%=__('appointment.list.pageTitle')%></h2>
+    <% if(appointments.length === 0){ %>
+        <h3><%=__('appointment.list.noData')%></h3>
+    <% }else{ %>
+    <table class="table-list">
+        <!-- table contents-->
+        <thead>
+        <tr>
+            <th><%=__('appointment.fields.date')%></th>
+            <th><%=__('appointment.fields.timeFrom')%></th>
+            <th><%=__('appointment.fields.timeTo')%></th>
+            <th><%=__('appointment.fields.doctor')%></th>
+            <th><%=__('appointment.fields.patient')%></th>
+            <th><%=__('list.actions.title')%></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% for (let appointment of appointments) { %>
+            <%if(admin){%>
+        <tr>
+            <td><%= appointment.date.toISOString().split('T')[0] %></td>
+            <td><%= appointment.timeFrom %></td>
+            <td><%= appointment.timeTo %></td>
+            <td><a href="doctors/details/<%=appointment.doctor._id%>"> <%= appointment.doctor.firstName %> <%= appointment.doctor.surname %></a></td>
+            <td><a href="patients/details/<%=appointment.patient._id%>"> <%= appointment.patient.firstName%> <%= appointment.patient.surname%></a></td>
+            <td>
+                <ul class="list-action">
+                    <li>
+                        <a href="/appointments/details/<%=appointment._id%>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
+                    </li>
+                    <li>
+                        <a href="/appointments/edit/<%=appointment._id%>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a>
+                    </li>
+                    <li>
+                        <a href="/appointments/delete/<%=appointment._id%>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <% }
+    else if(appointment.doctor._id == loggedUser._id) {%>
+            <tr>
+                <td><%= appointment.date.toISOString().split('T')[0] %></td>
+                <td><%= appointment.timeFrom %></td>
+                <td><%= appointment.timeTo %></td>
+                <td><a href="doctors/details/<%=appointment.doctor._id%>"> <%= appointment.doctor.firstName %> <%= appointment.doctor.surname %></a></td>
+                <td><a href="patients/details/<%=appointment.patient._id%>"> <%= appointment.patient.firstName%> <%= appointment.patient.surname%></a></td>
+                <td>
+                    <ul class="list-action">
+                        <li>
+                            <a href="/appointments/details/<%=appointment._id%>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
+                        </li>
+                        <li>
+                            <a href="/appointments/edit/<%=appointment._id%>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        <%}
+        } %>
+        </tbody>
+    </table>
+    <%}if(loggedUser){%>
+
+    <p><a href="/appointments/add" class="button-add"><%=__('appointment.list.addNew')%></a></p>
+    <%}%>
+</main>
+<%- include('../../fragments/footer.ejs')%>

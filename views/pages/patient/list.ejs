@@ -1,0 +1,79 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%= __('patient.list.pageTitle') %></h2>
+    <% if(patients.length === 0){ %>
+        <h3><%= __('patient.list.noData') %></h3>
+    <% }else { %>
+        <table class="table-list">
+            <!-- table contents-->
+            <thead>
+            <tr>
+                <th><%= __('patient.fields.firstName') %></th>
+                <th><%= __('patient.fields.surname') %></th>
+                <th><%= __('patient.fields.phoneNumber') %></th>
+                <th><%= __('list.actions.title') %></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% for (let patient of patients) { %>
+                <% if(admin){ %>
+                    <tr>
+                        <td><%= patient.firstName %></td>
+                        <td><%= patient.surname %></td>
+                        <td><%= patient.phoneNumber %></td>
+                        <td>
+                            <ul class="list-action">
+                                <li>
+                                    <a href="/patients/details/<%= patient._id %>"
+                                       class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                </li>
+                                <li>
+                                    <a href="/patients/edit/<%= patient._id %>"
+                                       class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                                </li>
+                                <li>
+                                    <a href="/patients/delete/<%= patient._id %>"
+                                       class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                                </li>
+
+                            </ul>
+
+                        </td>
+                    </tr>
+                <% } else if(loggedUser) {
+                        for(let appointment of patient.appointments){
+                if(appointment.doctor._id == loggedUser._id){ %>
+
+                    <tr>
+                        <td><%= patient.firstName %></td>
+                        <td><%= patient.surname %></td>
+                        <td><%= patient.phoneNumber %></td>
+                        <td>
+                            <ul class="list-action">
+                                <li>
+                                    <a href="/patients/details/<%= patient._id %>"
+                                       class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                                </li>
+                                <li>
+                                    <a href="/patients/edit/<%= patient._id %>"
+                                       class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                                </li>
+                            </ul>
+
+                        </td>
+                    </tr>
+            <% }
+            }}
+            }
+            %>
+
+            <!-- additional rows-->
+            </tbody>
+        </table>
+    <% } %>
+    <% if(admin || loggedUser){ %>
+        <p><a href="/patients/add" class="button-add"><%= __('patient.list.addNew') %></a></p>
+    <% } %>
+</main>
+<%- include('../../fragments/footer.ejs') %>

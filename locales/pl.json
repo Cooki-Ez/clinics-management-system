@@ -1,0 +1,301 @@
+{
+	"main-page": {
+		"content": "Strona główna",
+		"content-2": "Strona główna serwisu szpitalnego. Wybierz to, czego potrzebujesz.",
+		"title": "Hospital DEMO"
+	},
+	"log-in": {
+		"text": "Zaloguj się:",
+		"phone": "Numer telefonu:",
+		"password": "Hasło:",
+		"log-in-text": "Jesteś zalogowany jako: ",
+		"sign-in": "Zaloguj się",
+		"sign-out": "Wyloguj się"
+	},
+	"nav": {
+		"main": "Main",
+		"doctors": "Lekarze",
+		"patients": "Pacjenci",
+		"appointments": "Spotkania",
+		"projects": "Projekty",
+		"registrations": "Rejestracje"
+	},
+	"list": {
+		"actions": {
+			"title": "Działania",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Wróć",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"doctor": {
+		"fields": {
+			"firstName": "Imię",
+			"surname": "Nazwisko",
+			"salary": "Wynagrodzenie",
+			"phoneNumber": "Telefon",
+			"password": "Hasło",
+			"admin": "Admin",
+			"manager": "Kierownik"
+		},
+		"list": {
+			"title": "Lekarze",
+			"addNew": "Dodaj nowego lekarza",
+			"noData": "Nie ma lekarzy w bazie danych",
+			"pageTitle": "Lista lekarzy"
+		},
+		"form": {
+			"appointments": "Historia spotkań",
+			"add": {
+				"pageTitle": "Nowy lekarz",
+				"btnLabel": "Dodaj",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Nowy lekarz został pomyślnie dodany"
+				}
+			},
+			"details": {
+				"name": "Imię:",
+				"surname": "Nazwisko:",
+				"phone": "Telefon:",
+				"password": "Hasło:",
+				"pageTitle": "Dane lekarza"
+			},
+			"edit": {
+				"pageTitle": "Dane lekarza",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Zapisz zmiany",
+					"text": "Lekarz został pomyślnie zaktualizowany"
+				}
+			},
+			"error": {
+				"formError": "Formularz zawiera błędy"
+			}
+		}
+	},
+	"patient": {
+		"fields": {
+			"firstName": "Imię",
+			"surname": "Nazwisko",
+			"phoneNumber": "Telefon"
+		},
+		"list": {
+			"title": "Pacjenci",
+			"addNew": "Dodaj nowego pacjenta",
+			"noData": "W bazie danych nie ma pacjentów",
+			"pageTitle": "Lista pacjentów"
+		},
+		"form": {
+			"appointments": "Historia spotkań",
+			"add": {
+				"pageTitle": "Nowy pacjent",
+				"btnLabel": "Dodaj",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Nowy pacjent został pomyślnie dodany"
+				}
+			},
+			"details": {
+				"firstName": "Imię:",
+				"surname": "Nazwisko:",
+				"phone": "Telefon:",
+				"pageTitle": "Dane pacjenta"
+			},
+			"edit": {
+				"pageTitle": "Edycja pacjenta",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Pacjent został pomyślnie zaktualizowany."
+				}
+			},
+			"error": {
+				"formError": "Formularz zawiera błędy"
+			}
+		}
+	},
+	"appointment": {
+		"fields": {
+			"date": "Data",
+			"timeFrom": "Czas Od",
+			"timeTo": "Czas na",
+			"doctor": "Lekarz",
+			"patient": "Pacjent"
+		},
+		"list": {
+			"title": "Spotkania",
+			"addNew": "Dodaj nowe spotkanie",
+			"noData": "Nie ma żadnych spotkań w bazie danych",
+			"pageTitle": "Lista nominacji"
+		},
+		"form": {
+			"appointments": "Szczegóły dotyczące spotkań",
+			"add": {
+				"pageTitle": "Nowa nominacja",
+				"btnLabel": "Dodaj",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Nowy termin został pomyślnie dodany"
+				}
+			},
+			"details": {
+				"date": "Data:",
+				"timeFrom": "Czas Od:",
+				"timeTo": "Czas na:",
+				"selectDoctor": "---Wybierz lekarza---",
+				"selectPatient": "---Wybierz pacjenta---",
+				"pageTitle": "Dane pacjenta"
+			},
+			"edit": {
+				"pageTitle": "Edycja spotkania",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Spotkanie zostało pomyślnie zaktualizowane."
+				}
+			},
+			"error": {
+				"formError": "Formularz zawiera błędy"
+			}
+		}
+	},
+	"project": {
+		"fields": {
+			"startDate": "Data rozpoczęcia",
+			"endDate": "Data końcowa",
+			"name": "Nazwa",
+			"mainTask": "Cel",
+			"patient": "Pacjent"
+		},
+		"list": {
+			"involved": "Zaangażowani lekarze",
+			"addNew": "Dodaj nowy projekt",
+			"title": "Projekt",
+			"pageTitle": "Wykaz projektów"
+		},
+		"form": {
+			"projects": "Szczegóły projektu",
+			"details": {
+				"startDate": "Data rozpoczęcia:",
+				"endDate": "Data końcowa:",
+				"name": "Nazwa:",
+				"mainTask": "Cel:",
+				"patient": "Pacjent:",
+				"pageTitle": "Szczegóły projektu"
+			},
+			"add": {
+				"pageTitle": "Nowy projekt",
+				"btnLabel": "Dodaj",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Nowy projekt został pomyślnie dodany"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja projektu",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Projekt został pomyślnie zaktualizowany"
+				}
+			},
+			"error": {
+				"formError": "Formularz zawiera błędy"
+			}
+		}
+	},
+	"registration": {
+		"fields": {
+			"date": "Data rejestracji",
+			"time": "Czas rejestracji",
+			"mainTask": "Cel",
+			"project": "Projekt",
+			"doctor": "Doktor",
+			"doctorTask": "Zadanie",
+			"isManager": "Rola"
+		},
+		"list": {
+			"change": "Zmiana",
+			"noData": "W bazie danych nie ma żadnych rejestracji",
+			"title": "Rejestracje",
+			"addNew": "Dodaj nową rejestrację",
+			"pageTitle": "Wykaz rejestracji"
+		},
+		"form": {
+			"registrations": "Szczegóły dotyczące rejestracji",
+			"details": {
+				"date": "Data rejestracji:",
+				"time": "Czas rejestracji:",
+				"mainTask": "Cel:",
+				"selectDoctor": "---Wybierz lekarza---",
+				"selectProject": "---Wybierz projekt---",
+				"pageTitle": "Szczegóły dotyczące rejestracji"
+			},
+			"add": {
+				"pageTitle": "Nowa rejestracja",
+				"btnLabel": "Dodaj",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Nowa rejestracja została pomyślnie dodana"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja rejestracji",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie",
+					"text": "Rejestracja została pomyślnie zaktualizowana"
+				}
+			},
+			"error": {
+				"formError": "Formularz zawiera błędy"
+			}
+		}
+	},
+	"The entered phone number is already in use": "Wprowadzony numer telefonu jest już używany",
+	"validationMessage": {
+		"fieldRequired": "To pole jest wymagane",
+		"loginError": "Nieprawidłowy numer telefonu lub hasło!",
+		"2-30charError": "Pole powinno zawierać od 2 do 30 znaków",
+		"2-30charOrEmptyError": "Pole powinno zawierać od 2 do 30 znaków lub być pustew",
+		"phone-format": "Nieprawidłowy format numeru telefonu",
+		"number-value2k-1kk": "Liczba powinna mieścić się w zakresie od 2_000 do 1_000_000",
+		"number-format": "Nieprawidłowy format liczby",
+		"formErrors": "Formularz zawiera błędy",
+		"formatDateError": "Nieprawidłowy format daty",
+		"date-in-pastError": "Data nie może być w przeszłości",
+		"time-from-later-than-time-toError": "Czas rozpoczęcia nie może być późniejszy niż czas zakończenia",
+		"phone-number-already-in-use": "Wprowadzony numer telefonu jest już używany",
+		"password-format": "Nieprawidłowy format hasła (3-12 znaków)",
+		"timeInPastError": "Czas nie może być w przeszłości",
+		"nameFormatError": "Nieprawidłowy format nazwy"
+	},
+	"placeholder": {
+		"patient": {
+			"firstNamePlaceholder": "2-30 znaków",
+			"surnamePlaceholder": "2-30 znaków",
+			"phonePlaceholder": "e.g. +48 565 541 123"
+		},
+		"doctor": {
+			"firstNamePlaceholder": "2-30 znaków",
+			"surnamePlaceholder": "2-30 znaków",
+			"phonePlaceholder": "e.g. +48 565 541 123",
+			"passPlaceholder": "3-12 znaków",
+			"salaryPlaceholder": "2_000 - 1_000_000"
+		},
+		"project": {
+			"namePlaceholder": "2-30 znaków"
+		},
+		"registration": {
+			"doctorTaskPlaceholder": "2-30 znaków"
+		}
+	}
+}

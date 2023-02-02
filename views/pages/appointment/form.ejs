@@ -1,0 +1,100 @@
+<%- include('../../fragments/header.ejs')%>
+<main >
+    <h2><%= pageTitle%></h2>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-formatDate"><%= __('validationMessage.formatDateError') %></span>
+        <span id="errorMessage-date-in-past"><%= __('validationMessage.date-in-pastError') %></span>
+        <span id="errorMessage-time-from-later-than-time-to"><%= __('validationMessage.time-from-later-than-time-toError') %></span>
+        <span id="errorMessage-formErrors"><%= __('validationMessage.formErrors') %></span>
+        <span id="formType"><%= formMode %></span>
+    </div>
+
+    <form class="form-2" method="post" action="<%= formAction%>" novalidate onsubmit="return validationAppointmentForm();">
+        <input type="hidden" name="_id"
+               value="<%= appointment._id %>">
+        <label for="date"><%=__('appointment.fields.date')%>: <span class="symbol-required">*</span></label>
+        <input type="date" name="date" id="date" required
+               class="<%= validationErrors.find(e=>e.path.includes('date')) ? 'error-input' : '' %>"
+               value="<%= fmt.formatDate(appointment.date) %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorDate" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('date'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('date')).message) %>
+            <% } %>
+        </span>
+
+        <label for="timeFrom"><%=__('appointment.fields.timeFrom')%>: <span class="symbol-required">*</span></label>
+        <input type="time" name="timeFrom" id="timeFrom" required
+               class="<%= validationErrors.find(e=>e.path.includes('timeFrom')) ? 'error-input' : '' %>"
+               value="<%= (formMode=='createNew') ? '': appointment.timeFrom %>"
+               <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+        <span id="errorTimeFrom" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('timeFrom'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('timeFrom')).message) %>
+            <% } %>
+        </span>
+
+        <label for="timeTo"><%=__('appointment.fields.timeTo')%>: <span class="symbol-required">*</span></label>
+        <input type="time" name="timeTo" id="timeTo" required
+               class="<%= validationErrors.find(e=>e.path.includes('timeTo')) ? 'error-input' : '' %>"
+               value="<%= (formMode=='createNew') ? '': appointment.timeTo %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorTimeTo" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('timeTo'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('timeTo')).message) %>
+            <% } %>
+        </span>
+
+        <label> <%=__('appointment.fields.patient')%>: <span class="symbol-required">*</span></label>
+        <select id="patient_id" name="patient_id" <%=(formMode=='showDetails' ) ? 'disabled' : '' %> required
+                class="<%= validationErrors.find(e=>e.path.includes('patient_id')) ? 'error-input' : '' %>">
+            <% if (formMode !='edit' ){ %>
+            <option value="-1" selected = "selected"><%=__('appointment.form.details.selectPatient')%></option>
+                <% } %>
+                <% for (let i=0; i<allPatients.length; i++) {let patient=allPatients[i]; %>
+            <option value="<%=patient._id%>>" label="<%= patient.firstName + ' ' + patient.surname %>"
+                    <%=(appointment._id && patient._id.toString() == appointment.patient._id.toString())
+                    ? 'selected' : '' %>></option>
+                <% } %>
+        </select>
+
+        <span id="errorPatient" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('patient_id'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('patient_id')).message)%>
+            <% } %>
+        </span>
+
+        <label> <%=__('appointment.fields.doctor')%>: <span class="symbol-required">*</span></label>
+        <select id="doctor_id" name="doctor_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+                class="<%=validationErrors.find(e=>e.path.includes('doctor_id')) ? 'error-input' : '' %>">
+            <option value="-1"><%=__('appointment.form.details.selectDoctor')%></option>
+            <%for (let i = 0; i<allDoctors.length; i++){ let doc = allDoctors[i];%>
+            <option value="<%=doc._id%>" label="<%=doc.firstName + ' ' + doc.surname%>"
+                    <%= (appointment._id && doc._id.toString() == appointment.doctor_id.toString()) ? 'selected' : ''%>></option>
+            <%}%>
+        </select>
+        <span id="errorDoctor" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('doctor_id'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('doctor_id')).message )%>
+            <% } %>
+        </span>
+
+        <div class="form-buttons">
+    <% if (formMode=='showDetails' ) { %>
+
+            <a class="list-actions-button-edit" href="/appointments/edit/<%= appointment._id %>"><%=__('list.actions.edit')%></a>
+    <% } %>
+
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode !='showDetails' ) { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a class="form-button-cancel" href="/appointments"><%=__('form.actions.cancel')%></a>
+        <% } else { %>
+            <a class="form-button-cancel" href="/appointments"><%=__('form.actions.return')%></a>
+        <% } %>
+    </div>
+    </form>
+</main>
+<%- include('../../fragments/footer.ejs')%>

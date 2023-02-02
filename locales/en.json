@@ -1,0 +1,303 @@
+{
+	"main-page": {
+		"content": "Main Page",
+		"content-2": "Main page of hospital site. Choose whatever you need.",
+		"title": "Hospital DEMO"
+	},
+	"log-in": {
+		"text": "Log in:",
+		"phone": "Phone number:",
+		"password": "Password:",
+		"log-in-text": "You are logged in as: ",
+		"sign-in": "Sign in",
+		"sign-out": "Sign out"
+	},
+	"nav": {
+		"main": "Main",
+		"doctors": "Doctors",
+		"patients": "Patients",
+		"appointments": "Appointments",
+		"projects": "Projects",
+		"registrations": "Registrations"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"doctor": {
+		"fields": {
+			"firstName": "First name",
+			"surname": "Surname",
+			"salary": "Salary",
+			"phoneNumber": "Phone",
+			"password": "Password",
+			"admin": "Admin",
+			"manager": "Manager"
+		},
+		"list": {
+			"title": "Doctors",
+			"addNew": "Add new doctor",
+			"noData": "There are no doctors in database",
+			"pageTitle": "Doctors' list"
+		},
+		"form": {
+			"appointments": "Appointment history",
+			"add": {
+				"pageTitle": "New doctor",
+				"btnLabel": "Add",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new doctor has been successfully added"
+				}
+			},
+			"details": {
+				"name": "Name:",
+				"surname": "Surname:",
+				"phone": "Phone number:",
+				"password": "Password:",
+				"pageTitle": "Doctor details"
+			},
+			"edit": {
+				"pageTitle": "Editing doctor",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The doctor has been successfully updated"
+				}
+			},
+			"error": {
+				"formError": "Form contains errors"
+			}
+		}
+	},
+	"patient": {
+		"fields": {
+			"firstName": "First name",
+			"surname": "Surname",
+			"phoneNumber": "Phone"
+		},
+		"list": {
+			"title": "Patients",
+			"addNew": "Add new patient",
+			"noData": "There are no patients in database",
+			"pageTitle": "Patients' list"
+		},
+		"form": {
+			"appointments": "Appointments schedule",
+			"add": {
+				"pageTitle": "New patient",
+				"btnLabel": "Add",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new patient has been successfully added"
+				}
+			},
+			"details": {
+				"name": "Name:",
+				"surname": "Surname:",
+				"phone": "Phone number:",
+				"pageTitle": "Patient details"
+			},
+			"edit": {
+				"pageTitle": "Editing patient",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The patient has been successfully updated"
+				}
+			},
+			"error": {
+				"formError": "Form contains errors"
+			}
+		}
+	},
+	"appointment": {
+		"fields": {
+			"date": "Date",
+			"timeFrom": "Time From",
+			"timeTo": "Time To",
+			"doctor": "Doctor",
+			"patient": "Patient"
+		},
+		"list": {
+			"title": "Appointments",
+			"addNew": "Add new appointment",
+			"noData": "There are no appointments in database",
+			"pageTitle": "Appointments' list"
+		},
+		"form": {
+			"appointments": "Appointment details",
+			"add": {
+				"pageTitle": "New appointment",
+				"btnLabel": "Add",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new appointment has been successfully added"
+				}
+			},
+			"details": {
+				"date": "Date:",
+				"timeFrom": "Time From:",
+				"timeTo": "Time To:",
+				"selectDoctor": "---Select a doctor---",
+				"selectPatient": "---Select a patient---",
+				"pageTitle": "Appointment details"
+			},
+			"edit": {
+				"pageTitle": "Editing an appointment",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The appointment has been successfully updated"
+				}
+			},
+			"error": {
+				"formError": "Form contains errors"
+			}
+		}
+	},
+	"project": {
+		"fields": {
+			"startDate": "Start Date",
+			"endDate": "End date",
+			"name": "Name",
+			"mainTask": "Goal",
+			"patient": "Patient"
+		},
+		"list": {
+			"title": "Project",
+			"addNew": "Add new project",
+			"noData": "There are no projects in database",
+			"pageTitle": "Projects' list",
+			"involved": "Doctors involved"
+		},
+		"form": {
+			"projects": "Project details",
+			"details": {
+				"startDate": "Start Date:",
+				"endDate": "End date:",
+				"name": "Name:",
+				"mainTask": "Goal:",
+				"patient": "Patient:",
+				"pageTitle": "Project details"
+			},
+			"add": {
+				"pageTitle": "New project",
+				"btnLabel": "Add",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new project has been successfully added"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a project",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The project has been successfully updated"
+				}
+			},
+			"error": {
+				"formError": "Form contains errors"
+			}
+		}
+	},
+	"registration": {
+		"fields": {
+			"date": "Registration Date",
+			"time": "Registration Time",
+			"mainTask": "Goal",
+			"project": "Project",
+			"doctor": "Doctor",
+			"doctorTask": "Task",
+			"isManager": "Role"
+		},
+		"list": {
+			"title": "Registrations",
+			"addNew": "Add new registration",
+			"noData": "There are no registrations in database",
+			"pageTitle": "Registrations' list",
+			"involved": "Doctors involved",
+			"change": "Change"
+		},
+		"form": {
+			"registrations": "Registration details",
+			"details": {
+				"date": "Registration Date:",
+				"time": "Registration Time:",
+				"mainTask": "Goal:",
+				"selectDoctor": "---Select a doctor---",
+				"selectProject": "---Select a project---",
+				"pageTitle": "Registration details"
+			},
+			"add": {
+				"pageTitle": "New registration",
+				"btnLabel": "Add",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new registration has been successfully added"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a registration",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The registration has been successfully updated"
+				}
+			},
+			"error": {
+				"formError": "Form contains errors"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "This field is required",
+		"loginError": "Invalid phone number or password!",
+		"2-30charError": "The field should contain 2 to 30 characters",
+		"2-30charOrEmptyError": "The field should contain 2 to 30 characters or be empty",
+		"phone-format": "Invalid phone number format",
+		"number-value2k-1kk": "Number should be in range 2_000 to 1_000_000",
+		"number-format": "Invalid number format",
+		"password-format": "Invalid password format (3-12 characters)",
+		"formErrors": "Form contains errors",
+		"formatDateError": "Invalid date format",
+		"date-in-pastError": "Date can not be in the past",
+		"time-from-later-than-time-toError": "Begin time can not be later that end time",
+		"phone-number-already-in-use": "The entered phone number is already in use",
+		"timeInPastError": "The time can not be in past",
+		"nameFormatError": "Invalid name format"
+	},
+	"placeholder": {
+		"patient": {
+			"firstNamePlaceholder": "2-30 characters",
+			"surnamePlaceholder": "2-30 characters",
+			"phonePlaceholder": "e.g. +48 565 541 123",
+			"passPlaceholder": "3-5 characters"
+		},
+		"doctor": {
+			"salaryPlaceholder": "2_000 - 1_000_000",
+			"firstNamePlaceholder": "2-30 characters",
+			"surnamePlaceholder": "2-30 characters",
+			"phonePlaceholder": "e.g. +48 565 541 123",
+			"passPlaceholder": "3-12 characters"
+		},
+		"project": {
+			"namePlaceholder": "2-30 characters"
+		},
+		"registration": {
+			"doctorTaskPlaceholder": "2-30 characters"
+		}
+	}
+}

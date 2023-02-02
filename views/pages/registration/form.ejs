@@ -1,0 +1,103 @@
+<%- include('../../fragments/header.ejs')%>
+<main >
+    <h2><%= pageTitle%></h2>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-formatDate"><%= __('validationMessage.formatDateError') %></span>
+        <span id="errorMessage-char2-30"><%= __('validationMessage.2-30charOrEmptyError') %></span>
+        <span id="errorMessage-formErrors"><%= __('validationMessage.formErrors') %></span>
+        <span id="errorMessage-timeInPastError"><%= __('validationMessage.timeInPastError') %></span>
+        <span id="errorMessage-date-in-pastError"><%= __('validationMessage.date-in-pastError') %></span>
+        <span id="errorMessage-nameFormatError"><%= __('validationMessage.nameFormatError') %></span>
+        <span id="formType"><%= formMode %></span>
+    </div>
+
+    <form class="form-2" method="post" action="<%= formAction%>" novalidate  onsubmit="return validationRegistrationForm();">
+        <input type="hidden" name="_id"
+               value="<%= registration._id %>">
+
+        <label for="registrationDate"><%=__('registration.fields.date')%>: <span class="symbol-required">*</span></label>
+        <input type="date" name="registrationDate" id="registrationDate" required
+               class="<%= validationErrors.find(e=>e.path.includes('registrationDate')) ? 'error-input' : '' %>"
+               value="<%= fmt.formatDate(registration.registrationDate) %>"
+                <%=(formMode=='showDetails' || !admin) ? 'disabled' : '' %>/>
+        <span id="errorDate" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('registrationDate'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('registrationDate')).message) %>
+            <% } %>
+        </span>
+
+      <label for="registrationTime"><%=__('registration.fields.time')%>: <span class="symbol-required">*</span></label>
+        <input type="time" name="registrationTime" id="registrationTime" required
+               class="<%= validationErrors.find(e=>e.path.includes('registrationTime')) ? 'error-input' : '' %>"
+               value="<%= (formMode =='createNew') ? '': registration.registrationTime %>"
+                <%=(formMode=='showDetails' || !admin) ? 'disabled' : '' %> />
+        <span id="errorTime" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('registrationTime'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('registrationTime')).message) %>
+            <% } %>
+        </span>
+
+        <label for="doctorTask"><%=__('registration.fields.doctorTask')%>: <span class="symbol-required">*</span></label>
+        <input type="text" name="doctorTask" id="doctorTask" required placeholder="<%= __('placeholder.registration.doctorTaskPlaceholder')%>"
+               class="<%= validationErrors.find(e=>e.path.includes('doctorTask')) ? 'error-input' : '' %>"
+               value="<%= (formMode=='createNew') ? '': registration.doctorTask %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorDoctorTask" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('doctorTask'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('doctorTask')).message) %>
+            <% } %>
+        </span>
+
+        <label> <%=__('registration.fields.project')%>: <span class="symbol-required">*</span></label>
+        <select id="project_id" name="project_id" <%=(formMode=='showDetails' || !admin) ? 'disabled' : '' %> required
+                class="<%= validationErrors.find(e=>e.path.includes('project_id')) ? 'error-input' : '' %>">
+            <option value="-1" selected = "selected"><%=__('registration.form.details.selectProject')%></option>
+            <% for (let i=0; i<allProjects.length; i++) {let project=allProjects[i]; %>
+            <option value="<%=project._id%>" label="<%= project.name%>"
+                    <%=(registration._id && project._id.toString() == registration.project._id.toString())
+                            ? 'selected' : '' %>></option>
+            <% } %>
+        </select>
+
+        <span id="errorProject" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('project_id'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('project_id')).message)%>
+            <% } %>
+        </span>
+
+        <label><%=__('registration.fields.doctor')%>: <span class="symbol-required">*</span></label>
+        <select id="doctor_id" name="doctor_id" required <%= (formMode == 'showDetails' || !admin) ? 'disabled' : ''%>
+                class="<%=validationErrors.find(e=>e.path.includes('doctor_id')) ? 'error-input' : '' %>">
+            <option value="-1"><%=__('registration.form.details.selectDoctor')%></option>
+            <%for (let i = 0; i <  allDoctors.length; i++){
+                    let doc = allDoctors[i];%>
+
+            <option value="<%=doc._id%>" label="<%=doc.firstName + ' ' + doc.surname%>"
+                    <%= (registration._id && doc._id.toString() == registration.doctor_id.toString()) ? 'selected' : ''%>></option>
+            <%}%>
+        </select>
+        <span id="errorDoctor" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('doctor_id'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('doctor_id')).message )%>
+            <% } %>
+        </span>
+
+        <div class="form-buttons">
+            <% if (formMode=='showDetails' ) { %>
+
+                <a class="list-actions-button-edit" href="/registrations/edit/<%= registration._id %>"><%=__('list.actions.edit')%></a>
+            <% } %>
+
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode !='showDetails' ) { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+            <a class="form-button-cancel" href="/registrations"><%=__('form.actions.cancel')%></a>
+            <% } else { %>
+            <a class="form-button-cancel" href="/registrations"><%=__('form.actions.return')%></a>
+            <% } %>
+        </div>
+    </form>
+</main>
+<%- include('../../fragments/footer.ejs')%>

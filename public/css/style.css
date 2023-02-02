@@ -1,0 +1,563 @@
+html {
+    background-color: #ecf0f1;
+    font-family: sans-serif;
+    color: #ffffff;
+    background-image: url('../images/background.jpg');
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    min-width: 600px;
+}
+
+div {
+    line-height: 25px;
+}
+
+
+main{
+    padding-top: 10px;
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+}
+
+
+
+
+main a{
+    margin-top: 10px;
+}
+
+header,
+main,
+footer,
+nav {
+    margin: 1rem;
+}
+
+header h1 {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    font-family: "Times New Roman", serif;
+}
+
+img{
+    margin-left: 30px;
+}
+
+header{
+    border-bottom-color: #c0392b;
+    margin: 10px;
+    padding: 0;
+}
+
+footer {
+    background-color: #2d53ef;
+    color: #ffffff;
+    padding: 1rem;
+    margin: auto;
+    width: 150px;
+}
+
+nav {
+    list-style: none;
+    display: flex;
+    text-align: center;
+}
+li.menu-item:not(:last-child) {
+    margin-bottom: 3px;
+}
+
+nav ul {
+    margin: auto;
+    list-style-type: none;
+    padding: 0;
+    display: inline-flex;
+    background-color: #2d53ef;
+}
+
+nav ul li a {
+    display: inline;
+    background-color: #2d53ef;
+    color: #f8f8f8;
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #f1cb35;
+    color: #087594;
+}
+
+nav ul li a.active {
+    background-color: #001c8d;
+    color: #f8f8f8;
+}
+
+main {
+    padding: 1.5rem;
+}
+
+footer {
+    text-align: center;
+}
+
+main h2 {
+    font-family: "Times New Roman", serif;
+    margin: 0;
+    padding: 0;
+}
+
+.table{
+    margin-top: 10px;
+}
+
+.table-list {
+    margin-top: 10px;
+    border-collapse: collapse;
+    color: #000000;
+    width: 100%;
+}
+
+
+
+.table-list,
+.table-list th,
+.table-list td {
+    border: 1px solid #000000;
+}
+
+.table-list th,
+.table-list td {
+    padding: 0.5rem;
+    background-color: #5da37b;
+}
+
+.table-list th {
+    background-color: #0c8fb4;
+}
+
+.list-action {
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list-action li {
+    display: inline-block;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete {
+    display: inline-block;
+    width: 75px;
+    padding: 0.25rem 0.5rem;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.list-actions-button-details,
+.list-actions-button-edit {
+    margin-right: 1rem;
+}
+
+/* Details button */
+.list-actions-button-details {
+    background-color: #f1cb35;
+}
+
+.list-actions-button-details:hover {
+    background-color: #3498db;
+}
+
+/* Edit button */
+.list-actions-button-edit {
+    background-color: #002160;
+}
+
+.list-actions-button-edit:hover {
+    background-color: #f1c40f;
+}
+
+/* Delete button */
+.list-actions-button-delete {
+    background-color: #f80000;
+}
+
+.list-actions-button-delete:hover {
+    background-color: #e74c3c;
+}
+
+/* Add new record button*/
+.list-actions-button-delete,
+.list-actions-button-edit,
+.list-actions-button-details,
+.button-add {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+
+
+/*specific declaration for the button*/
+.button-add {
+    padding: 0.5rem 1rem;
+    background-color: #273dae;
+    margin-top: 10px;
+}
+
+/*Standardize the appearance of form elements*/
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+textarea {
+    overflow: auto;
+}
+
+/*Add a form class to the form (form).
+
+Define form properties*/
+.form {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 300px 300px;
+    gap: 1rem;
+}
+
+.form #edit_employee tr{
+    display: none;.
+    float: left;
+    grid-template-columns: 300px 300px;
+}
+
+.form #edit_employee tr:nth-child(2n+1){
+    clear: left;
+    padding-right: 10px;
+}
+
+/*Define properties common to form fields*/
+.form select,
+.form input[type="text"],
+.form input[type="number"],
+.form input[type="date"],
+.form input[type="email"] {
+    border: 1px solid #7f8c8d;
+    color: #345e45;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.form-2 select,
+.form-2 input[type="text"],
+.form-2 input[type="number"],
+.form-2 input[type="date"],
+.form-2 input[type="email"] {
+    border: 1px solid #7f8c8d;
+    color: #345e45;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+/*Define the appearance of labels*/
+.form label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5em;
+}
+
+.form-2 label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5em;
+}
+
+/*Define the appearance for the * symbol indicating the requirement of the field:
+
+Define the appropriate style for the class */
+.symbol-required {
+    color: #9f0d0d;
+}
+
+/*6.2. Buttons
+Add the form-buttons class to the div element containing the buttons.
+
+Define the space between the form and the buttons*/
+.form-buttons {
+    grid-column: 1 / span 2;
+}
+
+/*Add the form-button-submit and form-button-cancel classes to the previously created common button declarations*/
+.list-actions-button-details,
+.list-actions-button-edit,
+.list-actions-button-delete,
+.button-add,
+.form-button-submit,
+.form-button-cancel {
+    border: none;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
+
+}
+
+.button-add,
+.form-button-submit,
+.form-button-cancel {
+    padding: 0.5rem 0.5rem;
+}
+
+/*And specific properties*/
+.form-button-submit,
+.form-button-cancel {
+    width: max-content;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 20px;
+}
+
+.button-add,
+.form-button-submit {
+    background-color: #273dae;
+}
+
+.button-add:hover,
+.form-button-submit:hover {
+    background-color: #273dae;
+}
+
+.form-button-cancel,
+.list-actions-button-delete {
+    background-color: #c0392b;
+}
+
+.form-button-cancel:hover,
+.list-actions-button-delete:hover {
+    background-color: #e74c3c;
+}
+
+
+
+
+/*6.3. Form validation errors
+Define a class that will be responsible for properly formatting misfiled form fields*/
+.form input.error-input,
+.form select.error-input {
+    border: 3px solid #ff0000;
+    font-size: 0.85em;
+}
+
+.form-2 input.error-input,
+.form-2 select.error-input {
+    border: 3px solid #ff0000;
+    font-size: 0.85em;
+}
+
+/*Add the errors-text class to the fields containing the error message of each field
+
+Next, define a style*/
+.errors-text {
+    display: block;
+    font-size: 0.85em;
+    line-height: 2.25rem;
+    margin-top: 0.5em;
+    color: #ff0000;
+}
+
+
+label {
+    white-space: nowrap;
+}
+
+.checkboxes {
+    padding: 10px 10px 10px 0;
+    gap: 2rem;
+    font-size: 1em;
+    width: 100%;
+}
+
+@media all and (max-width: 720px) {
+    main {
+        padding: 20px 0;
+        margin: 0;
+        text-align: center;
+    }
+
+    header {
+        flex-direction: column;
+    }
+
+    header h1 {
+        text-align: center;
+    }
+
+    img {
+        align-self: center;
+    }
+
+    nav{
+        border: #ecf0f1;
+    }
+
+    a {
+        color: white;
+        border: white;
+    }
+
+    nav ul {
+
+        /*width: 30%;*/
+        flex-basis: 100%;
+        flex-wrap: wrap;
+        display: inline;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+        text-align: center;
+        border: #ecf0f1;
+    }
+
+    nav ul li a {
+        border: #ecf0f1;
+        display: block;
+    }
+
+    .form {
+        grid-template-columns: 1fr;
+        row-gap: unset;
+        margin-left: unset;
+    }
+
+    .form-buttons {
+        grid-column: 1 / 1;
+    }
+
+    .table-list {
+        max-width: 80%;
+        margin: auto;
+    }
+
+    .list-actions-button-details,
+    .list-actions-button-edit,
+    .list-actions-button-delete {
+
+        width: 50px;
+        margin: 0.25rem;
+
+    }
+
+
+    .list-actions {
+        max-width: 85px;
+    }
+
+    .form {
+        margin: auto;
+        width: 75%;
+    }
+    .form-button-submit,
+    .form-button-cancel {
+        text-align: center;
+        margin: auto;
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 20px;
+    }
+}
+
+.form-2{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    gap: 1rem;
+
+}
+
+@media all and (max-width: 400px) {
+    body,
+    nav,
+    nav ul,
+    header,
+    main,
+    footer {
+        margin: 0;
+    }
+
+
+    nav ul {
+        /*margin: auto;*/
+        list-style-type: none;
+        padding: 0;
+        display: inline-flex;
+        background-color: #2d53ef;
+    }
+
+    nav ul li {
+        flex-basis: 50%;
+
+        text-align: center;
+        font-size: 1em;
+        border: #ecf0f1;
+    }
+
+    nav ul li a {
+        border: #ecf0f1;
+        display: block;
+        /*width: 30%;*/
+    }
+
+    .table-list {
+        display: block;
+        max-width: 95%;
+        overflow-y: auto;
+    }
+    footer{
+        margin: auto;
+    }
+
+}
+
+body {
+    min-width: 360px;
+}
+
+.header img {
+    alignment: right;
+    background: #800c0c;
+}
+
+.header h2 {
+    position: center ;
+    margin: auto;
+}

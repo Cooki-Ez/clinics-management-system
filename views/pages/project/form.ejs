@@ -1,0 +1,120 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2><%= pageTitle%></h2>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-formatDate"><%= __('validationMessage.formatDateError') %></span>
+        <span id="errorMessage-date-in-past"><%= __('validationMessage.date-in-pastError') %></span>
+        <span id="errorMessage-char2-30"><%= __('validationMessage.2-30charError') %></span>
+        <span id="errorMessage-time-from-later-than-time-to"><%= __('validationMessage.time-from-later-than-time-toError') %></span>
+        <span id="errorMessage-formErrors"><%= __('validationMessage.formErrors') %></span>
+    </div>
+
+    <form class="form-2" method="post" action="<%=formAction%>" novalidate onsubmit="return validationProjectForm();">
+        <input type="hidden" name="_id" value="<%= project._id %>">
+
+        <label for="dateStart"><%=__('project.fields.startDate')%>: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateStart" id="dateStart" required
+               class="<%= validationErrors.find(e=>e.path.includes('dateStart')) ? 'error-input' : '' %>"
+               value="<%= fmt.formatDate(project.dateStart) %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %>/>
+        <span id="errorDateStart" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('dateStart'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('dateStart')).message) %>
+            <% } %>
+        </span>
+
+        <label for="dateEnd"><%=__('project.fields.endDate')%>: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateEnd" id="dateEnd" required
+               class="<%= validationErrors.find(e=>e.path.includes('dateEnd')) ? 'error-input' : '' %>"
+               value="<%= fmt.formatDate(project.dateEnd) %>"
+                <%=(formMode=='showDetails' ) ? 'disabled' : '' %> />
+        <span id="errorDateEnd" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('dateEnd'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('dateEnd')).message) %>
+            <% } %>
+        </span>
+
+        <label for="name"><%=__('project.fields.name')%>: <span class="symbol-required">*</span></label>
+        <input id="name" name="name" type="text" placeholder="<%= __('placeholder.project.namePlaceholder')%>" value="<%= project.name %>"
+               class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorProjectName" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('name'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('name')).message)%>
+            <% } %>
+        </span>
+
+
+        <label for="mainTask"><%=__('project.fields.mainTask')%>: <span class="symbol-required">*</span></label>
+        <input id="mainTask" name="mainTask" type="text" placeholder="<%= __('placeholder.project.namePlaceholder')%>" value="<%= project.mainTask %>"
+               class="<%= validationErrors.find(e => e.path.includes('mainTask')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorMainTask" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('mainTask'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('mainTask')).message) %>
+            <% } %>
+        </span>
+
+
+
+        
+        <div class="form-buttons">
+            <% if (formMode=='showDetails')
+                 {
+                     for (let reg of project.registrations){
+            if( admin || (loggedUser._id == reg.doctor_id && reg.isManager)){
+            %>
+
+                <a class="list-actions-button-edit" href="/projects/edit/<%= project._id %>"><%=__('list.actions.edit')%></a>
+
+            <% break;}}} %>
+
+            <p id="errorsSummary" class="errors-text"></p>
+
+            <% if (formMode !='showDetails' ) { %>
+            <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+            <a class="form-button-cancel" href="/projects"><%=__('form.actions.cancel')%></a>
+            <% } else { %>
+            <a class="form-button-cancel" href="/projects"><%=__('form.actions.return')%></a>
+            <% } %>
+        </div>
+    </form>
+
+    <% if (formMode=='showDetails' || formMode=='edit'  && project.registrations.length != '0') { %>
+    <h2><%=__('project.list.involved')%>:</h2>
+
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th><%=__('project.fields.name')%></th>
+            <%
+            for (let reg of project.registrations){
+            if(admin || (loggedUser._id == reg.doctor_id && reg.isManager)){%>
+            <th><%=__('registration.fields.doctorTask')%></th>
+            <%break;}}%>
+            <th><%=__('registration.fields.isManager')%></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <%  project.registrations.forEach(p => { %>
+            <tr>
+                <td><a href="/doctors/details/<%= p.doctor_id%>"> <%= p.doctor.firstName %> <%=p.doctor.surname%></a></td>
+                <%
+                for (let reg of project.registrations){
+                if(admin || (loggedUser._id == reg.doctor_id && reg.isManager)){%>
+                <td> <%=p.doctorTask == '' ? project.mainTask : p.doctorTask %> <a href="/registrations/edit/<%=p._id%>">
+
+                        <%=__('registration.list.change')%>
+                            <%break;}}%></a></td>
+                <td><%= p.isManager ? 'Manager' : 'Default' %></td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+    <% } %>
+
+</main>
+<%- include('../../fragments/footer.ejs')%>

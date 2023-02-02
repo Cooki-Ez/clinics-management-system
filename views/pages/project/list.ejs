@@ -1,0 +1,61 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%=__('project.list.pageTitle')%></h2>
+    <% if(projects.length === 0){ %>
+    <h2><%= __('project.list.noData') %></h2>
+    <% } else { %>
+    <table class="table-list">
+        <!-- table contents-->
+        <thead>
+        <tr>
+            <th><%= __('project.fields.name') %></th>
+            <th><%= __('project.fields.mainTask') %></th>
+            <th><%= __('project.fields.startDate') %></th>
+            <th><%= __('project.fields.endDate') %></th>
+            <th><%= __('list.actions.title') %></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% for (let project of projects) {  if(loggedUser){ %>
+            <tr>
+                <td><%= project.name %></td>
+                <td><%= project.mainTask %></td>
+                <td><%= project.dateStart.toISOString().split('T')[0] %></td>
+                <td><%= project.dateEnd.toISOString().split('T')[0] %></td>
+                <td>
+                    <ul class="list-action">
+                        <li>
+                            <a href="/projects/details/<%= project._id %>"
+                               class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                        </li>
+                        <% if(admin){ %>
+                            <li>
+                                <a href="/projects/edit/<%= project._id %>"
+                                   class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                            </li>
+                            <li>
+                                <a href="/projects/delete/<%= project._id %>"
+                                   class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                            </li>
+                        <% } %>
+
+                    </ul>
+
+                </td>
+            </tr>
+        <% }
+
+
+        } %>
+        </tbody>
+    </table>
+    <%
+    }if(admin){ %>
+
+    <p><a href="/projects/add" class="button-add"><%= __('project.list.addNew') %></a></p>
+    <% } %>
+</main>
+
+
+<%- include('../../fragments/footer.ejs') %>

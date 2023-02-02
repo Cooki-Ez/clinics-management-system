@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <script src="../../js/validationAppointmentForm.js" type="application/javascript"></script>
+    <script src="../../js/validationCommon.js" type="application/javascript"></script>
+    <script src="../../js/validationDocForm.js" type="application/javascript"></script>
+    <script src="../../js/validationPatientForm.js" type="application/javascript"></script>
+    <script src="../../js/validationProjectForm.js" type="application/javascript"></script>
+    <script src="../../js/validationRegistrationForm.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <link rel="shortcut icon" href="../..//images/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Hospital Demo</title>
+</head>
+<body>
+<% if(!loggedUser) { %>
+    <div id="login" style="text-align: center; grid-column: 1 / 4;">
+        <h3>
+            <%= __('log-in.text') %>
+        </h3>
+        <form method="post" action="/login" novalidate>
+            <label for="phoneNumber"><%= __('log-in.phone')%></label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+
+            <label for="loginPassword"><%= __('log-in.password') %></label>
+            <input type="password" id="loginPassword" name="password">
+
+            <input type="submit" value="<%= __('log-in.sign-in') %>">
+            <span id="loginErrors"><%= loginError ? loginError : '' %></span>
+        </form>
+    </div>
+<% } else { %>
+<span style="text-align: center; grid-column: 1 / 4; font-size: larger;"><%= __('log-in.log-in-text') %> <%= " " + loggedUser.firstName + " " + loggedUser.surname %> </span>
+    <%if (admin){%>
+        (<%=__('doctor.fields.admin')%>)
+    <%}%>
+<a href="/logout"><%= __('log-in.sign-out') %></a>
+<% } %>
+<nav>
+    <ul>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
+    </ul>
+</nav>
+
+<header>
+    <a href="/"><h1>Hospital</h1></a>
+    <a href="/"><img src="../../images/logo.png" alt="Hospital logo"></a>
+</header>
+<nav>
+    <ul>
+        <li><a href="/doctors" class="<%= navLocation == 'doctors' ? 'active' : '' %>"><%=__('doctor.list.title')%></a></li>
+        <%if(loggedUser){%>
+        <li><a href="/patients" class="<%= navLocation == 'patients' ? 'active' : '' %>"><%=__('patient.list.title')%></a></li>
+
+        <li><a href="/appointments" class="<%= navLocation == 'appointments' ? 'active' : '' %>"><%=__('appointment.list.title')%></a></li>
+            <li><a href="/projects" class="<%= navLocation == 'projects' ? 'active' : '' %>"><%=__('project.list.title')%></a></li>
+        <%}%>
+        <%if(loggedUser){%>
+
+            <li><a href="/registrations" class="<%= navLocation == 'registrations' ? 'active' : '' %>"><%=__('registration.list.title')%></a></li>
+        <%}%>
+    </ul>
+
+</nav>

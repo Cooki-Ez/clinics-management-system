@@ -1,0 +1,92 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2><%= pageTitle%></h2>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-char2-30"><%= __('validationMessage.2-30charError') %></span>
+        <span id="errorMessage-number-format"><%= __('validationMessage.number-format') %></span>
+        <span id="errorMessage-formErrors"><%= __('validationMessage.formErrors') %></span>
+    </div>
+
+    <form class="form-2" method="post" action="<%=formAction%>" novalidate onsubmit="return validationPatientForm();">
+        <input type="hidden" name="_id" value="<%= patient._id %>">
+
+        <label for="firstName"><%=__('patient.fields.firstName')%>: <span class="symbol-required">*</span></label>
+        <input id="firstName" name="firstName" type="text" placeholder="<%= __('placeholder.patient.firstNamePlaceholder')%>" value="<%= patient.firstName %>"
+               class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('firstName'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('firstName')).message)%>
+            <% } %>
+        </span>
+
+
+        <label for="surname"><%=__('patient.fields.surname')%>: <span class="symbol-required">*</span></label>
+        <input id="surname" name="surname" type="text" placeholder="<%= __('placeholder.patient.surnamePlaceholder')%>" value="<%= patient.surname %>"
+               class="<%= validationErrors.find(e => e.path.includes('surname')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('surname'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('surname')).message) %>
+            <% } %>
+        </span>
+
+        <label for="phoneNumber"><%=__('patient.fields.phoneNumber')%>: </label>
+        <input id="phoneNumber" name="phoneNumber" type="text" placeholder="<%= __('placeholder.patient.phonePlaceholder')%>" value="<%= patient.phoneNumber %>"
+               class="<%= validationErrors.find(e=>e.path.includes('phoneNumber')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorPhoneNumber" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e=> e.path.includes('phoneNumber'))) { %>
+                <%= __(validationErrors.find(e=> e.path.includes('phoneNumber')).message) %>
+            <% } %>
+        </span>
+
+        <div class="form-buttons">
+    <% if (formMode=='showDetails' ) { %>
+
+            <a class="list-actions-button-edit" href="/patients/edit/<%= patient._id %>"><%=__('list.actions.edit')%></a>
+
+    <% } %>
+
+        <p id="errorsSummary" class="errors-text"></p>
+
+        <% if (formMode !='showDetails' ) { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a class="form-button-cancel" href="/patients"><%=__('form.actions.cancel')%></a>
+        <% } else { %>
+            <a class="form-button-cancel" href="/patients"><%=__('form.actions.return')%></a>
+        <% } %>
+        </div>
+    </form>
+
+    <% if (formMode=='showDetails' || formMode=='edit' ) { %>
+    <%if(patient.appointments.length != '0'){%>
+        <h2><%=__('patient.form.appointments')%></h2>
+
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th><%=__('appointment.fields.doctor')%></th>
+                <th><%=__('appointment.fields.date')%></th>
+                <th><%=__('appointment.fields.timeFrom')%></th>
+                <th><%=__('appointment.fields.timeTo')%></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <%  patient.appointments.forEach(p => { %>
+                <tr>
+                    <td><a href="/doctors/details/<%= p.doctor_id%>"> <%= p.doctor.firstName %> <%=p.doctor.surname%></a></td>
+                    <td><%= p.date.toISOString().split('T')[0] %></td>
+                    <td><%= p.timeFrom %></td>
+                    <td><%= p.timeTo %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <% }} %>
+
+</main>
+<%- include('../../fragments/footer.ejs')%>

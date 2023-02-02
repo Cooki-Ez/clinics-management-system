@@ -1,0 +1,179 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%= pageTitle %></h2>
+
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-char2-30"><%= __('validationMessage.2-30charError') %></span>
+        <span id="errorMessage-format-phone"><%= __('validationMessage.phone-format') %></span>
+        <span id="errorMessage-number-value2k_1kk"><%= __('validationMessage.number-value2k-1kk') %></span>
+        <span id="errorMessage-password-format"><%= __('validationMessage.password-format') %></span>
+        <span id="errorMessage-formErrors"><%= __('validationMessage.formErrors') %></span>
+        <span id="formType"><%= formMode %></span>
+    </div>
+
+
+    <form class="form-2" method="post" action="<%= formAction %>" novalidate onsubmit="return validationDocForm();">
+        <input type="hidden" name="_id"
+               value="<%= doctor._id %>">
+
+        <label for="firstName"><%=__('doctor.fields.firstName')%>: <span class="symbol-required">*</span></label>
+        <input type="text" name="firstName" id="firstName" placeholder="<%= __('placeholder.doctor.firstNamePlaceholder') %>"
+               value="<%= doctor.firstName %>"
+               class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('firstName')).message) %>
+            <% } %>
+        </span>
+
+        <label for="surname"><%=__('doctor.fields.surname')%>: <span class="symbol-required">*</span></label>
+        <input type="text" name="surname" id="surname" placeholder="<%= __('placeholder.doctor.surnamePlaceholder') %>" value="<%= doctor.surname %>"
+               class="<%= validationErrors.find(e => e.path.includes('surname')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('surname'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('surname')).message) %>
+            <% } %>
+        </span>
+
+        <%if(admin || loggedUser._id == doctor._id){%>
+        <label for="salary"><%=__('doctor.fields.salary')%>: <span class="symbol-required">*</span></label>
+        <input type="number" name="salary" id="salary" placeholder="<%= __('placeholder.doctor.salaryPlaceholder') %>" value="<%= doctor.salary %>"
+               class="<%= validationErrors.find(e => e.path.includes('salary')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorSalary" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('salary'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('salary')).message) %>
+            <% } %>
+        </span>
+<%}%>
+
+        <label for="phoneNumber"><%=__('doctor.fields.phoneNumber')%>: <span class="symbol-required">*</span></label>
+        <input id="phoneNumber" name="phoneNumber" type="text" placeholder="<%= __('placeholder.doctor.phonePlaceholder') %>"
+               value="<%= doctor.phoneNumber %>"
+               class="<%= validationErrors.find(e => e.path.includes('phoneNumber')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorPhoneNumber" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('phoneNumber'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('phoneNumber')).message) %>
+            <% } %>
+        </span>
+
+
+        <%if(formMode == 'createNew'){%>
+        <label for="password"><%=__('doctor.fields.password')%>:<span class="symbol-required">*</span></label>
+        <input id="password" name="password" type="text" placeholder="<%= __('placeholder.doctor.passPlaceholder') %>" value="<%= doctor.password %>"
+               class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorPassword" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('password'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('password')).message) %>
+            <% } %>
+        </span>
+
+        <label for="isAdmin"><%=__('doctor.fields.admin')%>:<span class="symbol-required">*</span></label>
+        <input id="isAdmin" name="isAdmin" type="checkbox"
+               class="<%= validationErrors.find(e => e.path.includes('isAdmin')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorPassword" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('isAdmin'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('isAdmin')).message) %>
+            <% } %>
+        </span>
+
+        <label for="isManager"><%=__('doctor.fields.manager')%>:<span class="symbol-required">*</span></label>
+        <input id="isManager" name="isManager" type="checkbox"
+               class="<%= validationErrors.find(e => e.path.includes('isManager')) ? 'error-input' : '' %>"
+                <%= (formMode == 'showDetails') ? 'disabled' : '' %>/>
+        <span id="errorIsManager" class="errors-text">
+            <% if (validationErrors && validationErrors.find(e => e.path.includes('isManager'))) { %>
+                <%= __(validationErrors.find(e => e.path.includes('isManager')).message) %>
+            <% } %>
+        </span>
+        <%}%>
+
+        <% if (formMode == 'showDetails' && admin ){ %>
+            <div>
+                <a class="list-actions-button-edit" href="/doctors/edit/<%= doctor._id %>"><%=__('list.actions.edit')%></a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <p id="errorsSummary" class="errors-text"></p>
+
+            <% if (formMode != 'showDetails' ) { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/doctors"><%=__('form.actions.cancel')%></a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/doctors"><%=__('form.actions.return')%></a>
+            <% } %>
+        </div>
+    </form>
+
+    <% if ((formMode == 'showDetails' || formMode == 'edit') ){
+       if (admin ||loggedUser._id == doctor._id){
+    if(doctor.appointments.length != '0'){%>
+        <h2><%=__('doctor.form.appointments')%></h2>
+        <table class="table-list">
+            <!-- table contents-->
+            <thead>
+            <tr>
+                <th><%=__('appointment.fields.patient')%></th>
+                <th><%=__('appointment.fields.date')%></th>
+                <th><%=__('appointment.fields.timeFrom')%></th>
+                <th><%=__('appointment.fields.timeTo')%></th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <% doctor.appointments.forEach(b =>  { %>
+                <tr>
+                    <td>
+                        <a href="/patients/details/<%= b.patient_id %>"> <%= b.patient.firstName %> <%= b.patient.surname %></a>
+                    </td>
+                    <td> <%= b.date.toISOString().split('T')[0] %></td>
+                    <td><%= b.timeFrom %></td>
+                    <td><%= b.timeTo %></td>
+                </tr>
+            <% }) %>
+            </tbody>
+        </table>
+    <%}}
+    %>
+    <h2>List of active projects</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Goal</th>
+            <th>Role</th>
+            <%if(admin || loggedUser == doctor){%>
+                <th>Start of project</th>
+            <th>Date of registration</th>
+                <th>Expected end of project</th>
+            <%}%>
+        </tr>
+        </thead>
+        <tbody>
+        <% doctor.registrations.forEach(r =>{%>
+        <tr>
+            <td>
+                <a href="/projects/details/<%=r.project_id%>"> <%=r.project.name%></a>
+            </td>
+            <td><%=r.project.mainTask%></td>
+            <td><%= r.isManager ? 'Manager' : 'Default' %></td>
+            <%if(admin || loggedUser == doctor){%>
+            <td><%=r.project.dateStart.toISOString().split('T')[0]%></td>
+            <td><%=r.registrationDate.toISOString().split('T')[0]%></td>
+            <td><%=r.project.dateEnd.toISOString().split('T')[0]%></td>
+            <%}%>
+        </tr>
+        <%})%>
+        </tbody>
+    </table>
+
+    <% } %>
+</main>
+<%- include('../../fragments/footer.ejs') %>

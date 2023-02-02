@@ -1,0 +1,71 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2><%= __('registration.list.pageTitle') %></h2>
+    <% if(registrations.length == '0' ){ %>
+    <h2><%= __('registration.list.noData') %></h2>
+    <% }else { %>
+
+    <table class="table-list">
+        <!-- table contents-->
+        <thead>
+        <tr>
+            <th><%= __('registration.fields.doctor') %></th>
+            <th><%= __('registration.fields.project') %></th>
+            <th><%= __('registration.fields.date') %></th>
+            <th><%= __('registration.fields.time') %></th>
+            <% if(admin){ %>
+            <th><%= __('registration.fields.doctorTask') %></th>
+
+            <th><%= __('list.actions.title') %></th>
+            <% } %>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% for (let registration of registrations) {
+        %>
+            <tr>
+                <td>
+                    <a href="doctors/details/<%= registration.doctor_id %>"> <%= registration.doctor.firstName %> <%= registration.doctor.surname %></a>
+                </td>
+                <td><a href="projects/details/<%= registration.project_id %>"> <%= registration.project.name %></a></td>
+                <td><%= registration.registrationDate.toISOString().split('T')[0] %></td>
+                <td><%= registration.registrationTime %></td>
+                <% if(admin){ %>
+                    <td><%= registration.doctorTask %></td>
+
+                <td>
+                    <ul class="list-action">
+
+                        <li>
+                            <a href="/registrations/details/<%= registration._id %>"
+                               class="list-actions-button-details"><%= __('list.actions.details') %></a>
+                        </li>
+
+                        <li>
+                            <a href="/registrations/edit/<%= registration._id %>"
+                               class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
+                        </li>
+
+                        <li>
+                            <a href="/registrations/delete/<%= registration._id %>"
+                               class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
+                        </li>
+                        <% } %>
+                    </ul>
+
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <%
+
+    }if(admin){ %>
+
+        <p><a href="/registrations/add" class="button-add"><%= __('registration.list.addNew') %></a></p>
+    <% } %>
+</main>
+
+
+<%- include('../../fragments/footer.ejs') %>

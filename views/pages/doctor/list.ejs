@@ -1,0 +1,61 @@
+<%- include('../../fragments/header.ejs')%>
+<main>
+    <h2><%=__('doctor.list.pageTitle')%></h2>
+    <% if(doctors.length === 0){ %>
+        <h3><%=__('doctor.list.noData')%></h3>
+    <% }else{ %>
+    <table class="table-list">
+        <!-- table contents-->
+        <thead>
+        <tr>
+            <th><%=__('doctor.fields.firstName')%></th>
+            <th><%=__('doctor.fields.surname')%></th>
+            <%if (admin) {%>
+            <th><%=__('doctor.fields.salary')%></th>
+                <%}%>
+            <th><%=__('doctor.fields.phoneNumber')%></th>
+            <%if (loggedUser) {%>
+            <th><%=__('list.actions.title')%></th>
+            <%}%>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% for (let doctor of doctors) { %>
+        <tr>
+            <td><%= doctor.firstName %></td>
+            <td><%= doctor.surname %></td>
+            <%if (admin) {%>
+            <td><%= doctor.salary %></td>
+            <%}%>
+            <td><%= doctor.phoneNumber %></td>
+            <%if(loggedUser){%>
+            <td>
+
+                <ul class="list-action">
+
+                    <%if (loggedUser) {%>
+                    <li>
+                        <a href="/doctors/details/<%= doctor._id %>" class="list-actions-button-details"><%=__('list.actions.details')%></a>
+                    </li>
+                        <%if(admin){%>
+                    <li>
+                        <a href="/doctors/edit/<%= doctor._id %>" class="list-actions-button-edit"><%=__('list.actions.edit')%></a>
+                    </li>
+                    <li>
+                        <a href="/doctors/delete/<%= doctor._id %>" class="list-actions-button-delete"><%=__('list.actions.delete')%></a>
+                    </li>
+<%}}%>
+                </ul>
+            </td>
+
+        </tr>
+        <%}}%>
+        </tbody>
+    </table>
+    <%if(admin){%>
+    <p><a href="/doctors/add" class="button-add"><%=__('doctor.list.addNew')%></a></p>
+    <%}}%>
+
+</main>
+<%- include('../../fragments/footer.ejs')%>
